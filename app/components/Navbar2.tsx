@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import { FiSearch } from "react-icons/fi";
 import { FaBell } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
+import { ethers } from 'ethers';
+declare var ethereum: any;
 
 
 function Navbar2() {
@@ -10,10 +12,83 @@ function Navbar2() {
   const [connected, setConnected] = useState(false)
   const [walletAddress, setWalletAddress] = useState('')
 
-  const walletConnect = async () =>{
 
-    setWalletAddress('0x')
-    setConnected(true)
+
+  const checkMetaMask = async () => {
+    console.log("yo");
+    
+    if (typeof (window as any).ethereum !== 'undefined') {
+      try {
+      const provider = new ethers.BrowserProvider((window as any).ethereum);
+      
+
+      // await (window as any).ethereum.request({
+      //   method: 'wallet_addEthereumChain',
+      //   params: [
+      //     {
+      //       chainId: '0x1995901',
+      //       chainName: 'NERO-Testnet',
+      //       rpcUrls: ['https://testnet.nerochain.io/'], // Add your RPC URL for Sepolia
+      //       nativeCurrency: {
+      //         name: 'Nero',
+      //         symbol: 'NERO',
+      //         decimals: 18,
+      //       },
+      //       blockExplorerUrls: ['https://testnetscan.nerochain.io/'],
+      //     },
+      //   ],
+      // });
+
+
+      const signer = await provider.getSigner() 
+        const accounts = await provider.listAccounts();
+        if (accounts.length > 0) {
+          setWalletAddress(signer.address)
+          setConnected(true);
+          console.log(signer);
+          
+          // setWalletAddress(accounts[0]); 
+          
+          
+          
+        } else {
+          setConnected(false);
+        }
+      } catch (error) {
+        console.error('Error checking MetaMask connection:', error);
+        setConnected(false);
+      }
+    } else {
+      setConnected(false);
+    }
+  };
+  
+  
+
+
+  const connectWallet = async () => {
+    try {
+      await ethereum.request({ method: 'eth_requestAccounts' });
+      checkMetaMask();
+    } catch (error) {
+      console.error('Error connecting MetaMask:', error);
+    }
+  };
+
+
+
+
+
+
+
+  const walletConnect = async () =>{
+    console.log("hii");
+    
+
+    connectWallet();
+
+    // setWalletAddress('0x')
+    // setConnected(true)
   }
 
 

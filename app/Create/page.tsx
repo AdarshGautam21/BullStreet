@@ -8,10 +8,12 @@ import Button from "./Button";
 import Link from "next/link";
 import Navbar2 from "../components/Navbar2";
 
+
 const BullStreetComponent: React.FC = () => {
   return (
     <main className="flex overflow-hidden flex-col items-center px-4 pt-2.5 pb-72 bg-neutral-950 max-md:pr-5 max-md:pb-24">
       {/* <Header /> */}
+
       <Navbar2 />
       <nav className="flex gap-1 px-1.5 py-1 mt-6 ml-52 text-xs font-medium text-center rounded-md bg-neutral-200 text-neutral-950 w-[68px]">
         <img
