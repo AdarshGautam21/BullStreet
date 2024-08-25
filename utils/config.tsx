@@ -1,5 +1,5 @@
 import contractABI from '@/public/abi/market.json'
-import AssetABI from '@/public/abi/Asset.json'
+import AssetABI from '@/public/abi/asset.json'
 // import { ethers } from 'ethers';
 
 export const contracts = {
