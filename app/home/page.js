@@ -1,3 +1,4 @@
+'use client'
 // import React from 'react'
 // import { MdOutlineShowChart } from "react-icons/md";
 // import { BsFilterLeft } from "react-icons/bs";
@@ -97,7 +98,7 @@
 
 
 
-'use client'
+
 import React, {useEffect, useState} from 'react';
 import { MdOutlineShowChart } from "react-icons/md";
 import { BsFilterLeft } from "react-icons/bs";
@@ -118,7 +119,14 @@ const cardData = [
 ];
 
 
-const [allTokens, setAllTokens] = useState([]);
+
+
+
+
+const Homepage = () => {
+
+
+  const [allTokens, setAllTokens] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -149,7 +157,7 @@ const [allTokens, setAllTokens] = useState([]);
 
 
 
-const Homepage = () => {
+
   return (
     <div className='bg-slate-950'>
       {/* Navbar component */}
