@@ -79,6 +79,19 @@
 	},
 	{
 		"inputs": [],
+		"name": "getAllAssets",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "getAllCIDsAndAssets",
 		"outputs": [
 			{

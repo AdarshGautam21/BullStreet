@@ -4,7 +4,7 @@ import AssetABI from '@/public/abi/asset.json'
 
 export const contracts = {
     // AssetMarket: '0x62232ef913d62ad18107af9bcf3c76179ec7ef64'
-    AssetMarket: '0x8c5a818cec781e56f6db2c15bd46c8646f15e75e'
+    AssetMarket: '0x48b81202149734e9fdb03dd13ef0522cc55083e2'
 }
 
 export const abi = {
