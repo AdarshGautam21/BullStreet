@@ -8,7 +8,6 @@ import Button from "./Button";
 import Link from "next/link";
 import Navbar2 from "../components/Navbar2";
 
-
 const BullStreetComponent: React.FC = () => {
   return (
     <main className="flex overflow-hidden flex-col items-center px-4 pt-2.5 pb-72 bg-neutral-950 max-md:pr-5 max-md:pb-24">

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import FormField from "./FormField";
 import Button from "./Button";
 import CreateButton from "../components/createButton";
+import CreateToken from "@/functions/createToken";
 
 const CoinForm: React.FC = () => {
   const [formData, setFormData] = useState<any>({
@@ -34,7 +35,7 @@ const CoinForm: React.FC = () => {
     if (formData.image) {
       console.log("Selected file:", formData.image.name);
     }
-    // Implement form submission logic here
+    CreateToken(formData.name, formData.image)    // Implement form submission logic here
   };
 
   return (
