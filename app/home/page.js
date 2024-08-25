@@ -97,8 +97,8 @@
 
 
 
-
-import React from 'react';
+'use client'
+import React, {useEffect, useState} from 'react';
 import { MdOutlineShowChart } from "react-icons/md";
 import { BsFilterLeft } from "react-icons/bs";
 import { FaSeedling, FaMedal } from "react-icons/fa";
@@ -106,6 +106,7 @@ import { GiGraduateCap } from "react-icons/gi";
 import Navbar2 from '../components/Navbar2';
 import Card from '../components/Card';
 import Link from 'next/link';
+import getAllAssets from '@/functions/listAssets';
 
 const cardData = [
   { id: 1, title: 'Creation 1', subtitle: 'Boxey', description: 'Description of creation 1', imageSrc: '/bit.jpeg', twitterLink: '#', telegramLink: '#', discordLink: '#', followers: 2, value: '$10K', marketCap: '$10k' },
@@ -115,6 +116,38 @@ const cardData = [
   { id: 5, title: 'Graduated 1', subtitle: 'Boxey', description: 'Description of graduated 1', imageSrc: '/bit.jpeg', twitterLink: '#', telegramLink: '#', discordLink: '#', followers: 2, value: '$10K', marketCap: '$10k' },
   { id: 6, title: 'Graduated 2', subtitle: 'Boxey', description: 'Description of graduated 2', imageSrc: '/bit.jpeg', twitterLink: '#', telegramLink: '#', discordLink: '#', followers: 2, value: '$10K', marketCap: '$10k' },
 ];
+
+
+const [allTokens, setAllTokens] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getAllAssets();
+        // if (response.data && response.data.fileList) {
+        //   const imageExtensions = [".jpg", ".jpeg", ".png"];
+        //   const nonImageFiles = response.data.fileList.filter(file => {
+        //     const extension = file.fileName.slice(file.fileName.lastIndexOf('.')).toLowerCase(); // Get the file extension
+        //     return !imageExtensions.includes(extension); // Filter out files with image extensions
+        // });
+          setAllTokens(response);
+          console.log(allTokens);
+          // console.log(response.data.fileList);
+          
+          
+        // } else {
+        //   console.error('Invalid response format:', response);
+        // }
+      } catch (error) {
+        console.error('Error fetching uploads:', error);
+        // Handle error accordingly
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
 
 const Homepage = () => {
   return (
