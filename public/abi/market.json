@@ -2,66 +2,6 @@
 	{
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "listingId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "numcoins",
-				"type": "uint256"
-			}
-		],
-		"name": "buyasset",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "listingId",
-				"type": "uint256"
-			}
-		],
-		"name": "cancel",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_symbol",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "cid",
-				"type": "string"
-			}
-		],
-		"name": "createContent",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "address",
 				"name": "assetAddress",
 				"type": "address"
@@ -77,7 +17,7 @@
 				"type": "uint256"
 			}
 		],
-		"name": "listasset",
+		"name": "addassettolist",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -91,11 +31,24 @@
 			},
 			{
 				"internalType": "uint256",
-				"name": "amount",
+				"name": "numcoins",
 				"type": "uint256"
 			}
 		],
-		"name": "mintasset",
+		"name": "buyasset",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "assetAddress",
+				"type": "address"
+			}
+		],
+		"name": "cancel",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -104,7 +57,49 @@
 		"inputs": [
 			{
 				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
 				"name": "cid",
+				"type": "string"
+			}
+		],
+		"name": "createcontent",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllCIDsAndAssets",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			},
+			{
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "contentNFT",
 				"type": "string"
 			}
 		],
@@ -120,11 +115,24 @@
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "getListedAssets",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "listingId",
-				"type": "uint256"
+				"internalType": "address",
+				"name": "assetAddress",
+				"type": "address"
 			}
 		],
 		"name": "getListing",
@@ -142,11 +150,6 @@
 						"type": "address"
 					},
 					{
-						"internalType": "contract Asset",
-						"name": "asset",
-						"type": "address"
-					},
-					{
 						"internalType": "uint256",
 						"name": "amount",
 						"type": "uint256"
@@ -160,6 +163,35 @@
 				"internalType": "struct Market.Listing",
 				"name": "",
 				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "contentNFT",
+				"type": "string"
+			}
+		],
+		"name": "getTokenDetails",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "price",
+				"type": "uint256"
+			},
+			{
+				"internalType": "enum Market.Listingstatus",
+				"name": "status",
+				"type": "uint8"
 			}
 		],
 		"stateMutability": "view",

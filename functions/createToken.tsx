@@ -8,8 +8,10 @@ const CreateToken = async(name: string, img:object) =>{
     const provider = new ethers.BrowserProvider((window as any).ethereum);
     const thumbnailOutput = await lighthouse.upload( [img], lighthouseAPI);
     const signer = await provider.getSigner(); 
+    console.log(thumbnailOutput);
+    
     const AssetMarketContract = new ethers.Contract(contracts.AssetMarket, abi.AssetMarket, signer);
-    const transaction = await AssetMarketContract.createcontent(name, img);
+    const transaction = await AssetMarketContract.createcontent(name, thumbnailOutput);
     const receipt = await transaction.wait()
     console.log(transaction);
     console.log(receipt);
