@@ -11,7 +11,7 @@ const CreateToken = async(name: string, img:object) =>{
     console.log(thumbnailOutput);
     
     const AssetMarketContract = new ethers.Contract(contracts.AssetMarket, abi.AssetMarket, signer);
-    const transaction = await AssetMarketContract.createcontent(name, thumbnailOutput);
+    const transaction = await AssetMarketContract.createcontent(name, thumbnailOutput.data.Hash);
     const receipt = await transaction.wait()
     console.log(transaction);
     console.log(receipt);
