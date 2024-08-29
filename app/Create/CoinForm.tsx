@@ -29,13 +29,15 @@ const CoinForm: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e:any) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
     console.log("Form Data:", formData);
     if (formData.image) {
+      const updatedFile: any = await formData.image ? new File([formData.image], formData.name, { type: formData.image.type }) : null;
+
       console.log("Selected file:", formData.image.name);
+      CreateToken(formData.name, updatedFile)    // Implement form submission logic here
     }
-    CreateToken(formData.name, formData.image)    // Implement form submission logic here
   };
 
   return (

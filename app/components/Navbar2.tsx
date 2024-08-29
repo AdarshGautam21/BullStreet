@@ -44,24 +44,35 @@ function Navbar2() {
         const accounts = await provider.listAccounts();
         if (accounts.length > 0) {
           setWalletAddress(signer.address)
-          setConnected(true);
-          console.log(signer);
+          const network = await provider.getNetwork();
+
+          if(network.chainId !== BigInt(656476)){
+
+            await (window as any).ethereum.request(
+              {
+                  method: 'wallet_switchEthereumChain',
+                  params: [{ chainId: '0xa045c' }],
+              }
+          );
+        }
+        setConnected(true);
+        }
+
           
           // setWalletAddress(accounts[0]); 
           
           
           
-        } else {
+         else {
           setConnected(false);
         }
-      } catch (error) {
-        console.error('Error checking MetaMask connection:', error);
-        setConnected(false);
+      } 
+      catch(err){
+        console.log(err);
+        
       }
-    } else {
-      setConnected(false);
-    }
-  };
+  }
+}
   
   
 
@@ -121,6 +132,7 @@ function Navbar2() {
       </div>
     </>
   )
+
 }
 
 export default Navbar2

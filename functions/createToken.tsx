@@ -9,6 +9,14 @@ const CreateToken = async(name: string, img:object) =>{
     const thumbnailOutput = await lighthouse.upload( [img], lighthouseAPI);
     const signer = await provider.getSigner(); 
     console.log(thumbnailOutput);
+
+    // const updatedFileName = form.watch('Title') + " " + thumbnailOutput.data.Hash;
+    //   const updatedFile = selectedVideo ? new File([selectedVideo], updatedFileName, { type: selectedVideo.type }) : null;
+    //   console.log(updatedFile);
+      
+    //   setSelectedVideo(updatedFile);
+
+
     
     const AssetMarketContract = new ethers.Contract(contracts.AssetMarket, abi.AssetMarket, signer);
     const transaction = await AssetMarketContract.createcontent(name, thumbnailOutput.data.Hash);

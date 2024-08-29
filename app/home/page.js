@@ -108,6 +108,7 @@ import Navbar2 from '../components/Navbar2';
 import Card from '../components/Card';
 import Link from 'next/link';
 import getAllAssets from '@/functions/listAssets';
+import getTokens from '@/functions/getTokens';
 
 const cardData = [
   { id: 1, title: 'Creation 1', subtitle: 'Boxey', description: 'Description of creation 1', imageSrc: '/bit.jpeg', twitterLink: '#', telegramLink: '#', discordLink: '#', followers: 2, value: '$10K', marketCap: '$10k' },
@@ -126,26 +127,18 @@ const cardData = [
 const Homepage = () => {
 
 
-  const [allTokens, setAllTokens] = useState();
+  const [allTokens, setAllTokens] = useState({});
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getAllAssets();
-        // if (response.data && response.data.fileList) {
-        //   const imageExtensions = [".jpg", ".jpeg", ".png"];
-        //   const nonImageFiles = response.data.fileList.filter(file => {
-        //     const extension = file.fileName.slice(file.fileName.lastIndexOf('.')).toLowerCase(); // Get the file extension
-        //     return !imageExtensions.includes(extension); // Filter out files with image extensions
-        // });
-          setAllTokens(response);
+        const response = await getTokens();
+          setAllTokens(response.data.fileList);
+          setLoading(false)
+
+          // if(allTokens.length>0)
           console.log(allTokens);
-          // console.log(response.data.fileList);
-          
-          
-        // } else {
-        //   console.error('Invalid response format:', response);
-        // }
       } catch (error) {
         console.error('Error fetching uploads:', error);
         // Handle error accordingly
@@ -189,11 +182,20 @@ const Homepage = () => {
       </div>
 
       {/* Card Container */}
+      {loading ? 
+      (
+        <>Loading</>
+      )
+      :
+      (
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-5'>
-        {cardData.map((card) => (
-          <Card key={card.id} card={card} />
+        {allTokens.map((card, index) => (
+          <Card key={index} card={card} />
         ))}
       </div>
+      )
+      }
+
     </div>
   );
 };
